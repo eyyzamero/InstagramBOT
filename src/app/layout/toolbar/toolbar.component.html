@@ -1,1 +1,15 @@
-<p>toolbar works!</p>
+<mat-toolbar class="app-toolbar">
+	<mat-toolbar-row>
+		<span class="toolbar-app-logo" (click)="navigateToMainPage()">
+			<img src="/assets/instagram.svg" alt="app-logo" loading="lazy">
+			<span>BOT</span>
+		</span>
+		<span class="toolbar-spacer"></span>
+		<span class="toolbar-buttons">
+			<button mat-icon-button class="logout-button">
+				<mat-icon>logout</mat-icon>
+			</button>
+		</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+<div class="app-toolbar-spacer"></div>

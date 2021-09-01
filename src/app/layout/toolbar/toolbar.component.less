@@ -1,0 +1,59 @@
+.app-toolbar {
+	position: fixed;
+    background-color: #0D5F84;
+    color: #FFFFFF;
+    min-height: 48px;
+    z-index: 20;
+
+	mat-toolbar-row {
+
+		.toolbar-app-logo {
+			display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            cursor: pointer;
+		}
+
+		img {
+			position: relative;
+			display: block;
+			height: 32px;
+			top: 2px;
+		}
+
+		span {
+			display: block;
+			font: 700 32px/32px Roboto, "Noto Sans", "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+			font-style: italic;
+			margin-left: 4px;
+		}
+	}
+
+	.toolbar-spacer {
+		flex: 1 1 auto;
+	}
+
+	.toolbar-buttons {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: center;
+
+		.logout-button {
+			background-color: #0D5F84;
+
+			mat-icon {
+				color: white;
+			}
+		}
+	}
+}
+
+.app-toolbar-spacer {
+	display: block;
+    height: 48px;
+}

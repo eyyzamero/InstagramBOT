@@ -10,7 +10,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: "",
-				component: DashboardComponent,
+				loadChildren: () => import("../pages/dashboard/dashboard.module").then(m => m.DashboardModule),
 				pathMatch: "full"
 			}
 		]

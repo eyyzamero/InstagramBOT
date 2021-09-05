@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
@@ -12,6 +11,10 @@ const routes: Routes = [
 				path: "",
 				loadChildren: () => import("../pages/dashboard/dashboard.module").then(m => m.DashboardModule),
 				pathMatch: "full"
+			},
+			{
+				path: "login",
+				loadChildren: () => import("../pages/login/login.module").then(m => m.LoginModule)
 			}
 		]
 	}

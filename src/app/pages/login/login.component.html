@@ -1,0 +1,9 @@
+<div class="login-wrapper" [formGroup]="loginForm">
+	<span class="login-main-text">Login</span>
+	<span class="login-sub-text">Provide details to your Instagram account</span>
+	<input class="login-username-input" type="text" formControlName="username" placeholder="Username">
+	<input class="login-password-input" type="password" formControlName="password" placeholder="Password">
+	<button class="login-submit-button" type="button" (click)="submitLoginForm()">
+		<span>Login</span>
+	</button>
+</div>

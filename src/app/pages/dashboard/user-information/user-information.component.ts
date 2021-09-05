@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CommunicationState } from 'src/app/core/enums';
 import { UserInformationModel } from 'src/app/core/models/implementations';
 import { IUserInformationModel } from 'src/app/core/models/interfaces';
 import { UserInformationObservableService } from 'src/app/core/services/observable/user-information-observable.service';
@@ -13,6 +15,8 @@ import { UserInformationObservableService } from 'src/app/core/services/observab
 export class UserInformationComponent implements OnDestroy {
 
 	userInformation: IUserInformationModel = new UserInformationModel();
+	userInformationCommunicationState: CommunicationState = CommunicationState.NONE;
+	CommunicationState = CommunicationState;
 
 	private _userInformationSubscription!: Subscription;
 
@@ -24,7 +28,10 @@ export class UserInformationComponent implements OnDestroy {
 
 	private _initObservables() {
 		this._userInformationSubscription = this._userInformationObservableService.observable.subscribe(
-			value => this.userInformation = value.data
+			value => {
+				this.userInformation = value.data;
+				this.userInformationCommunicationState = value.communicationState;
+			}
 		);
 	}
 

@@ -1,4 +1,4 @@
-<div class="user-information-wrapper">
+<div class="user-information-wrapper" *ngIf="userInformationCommunicationState === CommunicationState.LOADED">
 	<img class="user-information-profile-picture" [src]="userInformation.profilePictureURL" alt="user-profile-picture">
 	<div class="user-information-username">
 		<span>{{ userInformation.username }}</span>
@@ -7,3 +7,4 @@
 		<span>{{ userInformation.fullName}}</span>
 	</div>
 </div>
+<mat-progress-spinner *ngIf="userInformationCommunicationState !== CommunicationState.LOADED" class="user-information-loading" color="primary" mode="indeterminate"></mat-progress-spinner>

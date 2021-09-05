@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { UserInformationComponent } from './user-information/user-information.component';
+import { MaterialModule } from 'src/app/core/material/material.module';
 
 @NgModule({
 	declarations: [
@@ -12,7 +13,8 @@ import { UserInformationComponent } from './user-information/user-information.co
 	],
 	imports: [
 		CommonModule,
-		DashboardRoutingModule
+		DashboardRoutingModule,
+		MaterialModule
 	]
 })
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IgBotCommunicationService } from 'src/app/core/services/communication';
 
 @Component({
 	selector: 'app-dashboard',
@@ -9,9 +8,5 @@ import { IgBotCommunicationService } from 'src/app/core/services/communication';
 
 export class DashboardComponent {
 
-	constructor(
-		_igBotCommunicationService: IgBotCommunicationService
-	) {
-		// _igBotCommunicationService.login();
-	}
+	constructor() { }
 }

@@ -14,7 +14,6 @@ export class LoginCommunicationService {
 	) { }
 
 	async login(req: ILoginReq): Promise<ILoginRes> {
-		console.log("Login executed");
 		return await this._httpClient.post<ILoginRes>("http://localhost:8080/auth/login", req).toPromise();
 	}
 }

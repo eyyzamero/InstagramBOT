@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommunicationState } from 'src/app/core/enums';
 import { UserInformationMapperService } from 'src/app/core/services/mapper';
 import { UserInformationObservableService } from 'src/app/core/services/observable/user-information-observable.service';
 import { LoginReq } from './contracts/requests';
@@ -16,6 +17,9 @@ export class LoginComponent {
 
 	loginForm: FormGroup = new FormGroup({});
 	invalidLoginCredentials: boolean = false;
+
+	communicationState: CommunicationState = CommunicationState.NONE;
+	CommunicationState = CommunicationState;
 
 	get loginFormControls() {
 		return this.loginForm.controls;
@@ -48,15 +52,24 @@ export class LoginComponent {
 			this.invalidLoginCredentials = false;
 
 			var req = new LoginReq(this.loginFormControls.username.value, this.loginFormControls.password.value);
+			this.communicationState = CommunicationState.LOADING;
 
-			await this._loginCommunicationService.login(req).then(
-				data => {
-					var mappedResponse = this._userInformationMapperService.ILoginResToIUserInformationModel(data);
-					this._userInformationObservableService.add(mappedResponse);
-					this._router.navigate(["dashboard"]);
-				},
-				() => this.invalidLoginCredentials = true
-			);
+			try {
+				await this._loginCommunicationService.login(req).then(
+					data => {
+						var mappedResponse = this._userInformationMapperService.ILoginResToIUserInformationModel(data);
+						this._userInformationObservableService.add(mappedResponse);
+						this.communicationState = CommunicationState.LOADED;
+						this._router.navigate(["dashboard"]);
+					},
+					() => {
+						this.invalidLoginCredentials = true;
+						this.communicationState = CommunicationState.LOADED;
+					}
+				);
+			} catch(error) {
+				console.log(error);
+			}
 		}
 	}
 }

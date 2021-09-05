@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CommunicationState } from 'src/app/core/enums';

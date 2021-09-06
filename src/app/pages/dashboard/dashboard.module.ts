@@ -6,12 +6,14 @@ import { DashboardComponent } from './dashboard.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { TasksComponent } from './tasks/tasks.component';
+import { TasksQueueComponent } from './tasks-queue/tasks-queue.component';
 
 @NgModule({
 	declarations: [
 		DashboardComponent,
 		UserInformationComponent,
-		TasksComponent
+		TasksComponent,
+  		TasksQueueComponent
 	],
 	imports: [
 		CommonModule,

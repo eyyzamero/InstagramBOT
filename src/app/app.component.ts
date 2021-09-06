@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { WebSocketService } from './core/services/regular';
 
 @Component({
 	selector: 'app-root',
@@ -9,9 +10,13 @@ import { environment } from 'src/environments/environment';
 
 export class AppComponent {
 
-	constructor() {
+	constructor(
+		private _webSocketService: WebSocketService
+	) {
 		if (environment.production) {
 			window.console.log = function() { };
 		}
+
+		this._webSocketService.openConnection();
 	}
 }

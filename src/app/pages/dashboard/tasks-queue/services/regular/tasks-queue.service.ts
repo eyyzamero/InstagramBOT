@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
-import { ITaskBase } from '../../models';
+import { ITaskModel } from '../../models';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,7 +8,7 @@ import { ITaskBase } from '../../models';
 
 export class TasksQueueService implements OnDestroy {
 
-	private _itemsInQueue: Array<ITaskBase> = new Array<ITaskBase>();
+	private _itemsInQueue: Array<ITaskModel> = new Array<ITaskModel>();
 	private _interval!: Subscription;
 
 	get items() {
@@ -17,11 +17,11 @@ export class TasksQueueService implements OnDestroy {
 
 	constructor() { }
 
-	addToQueue(item: ITaskBase) {
+	addToQueue(item: ITaskModel) {
 		this.items.push(item);
 	}
 
-	removeFromQueue(item: ITaskBase) {
+	removeFromQueue(item: ITaskModel) {
 		let index = this.items.indexOf(item);
 		this.items.splice(index, 1);
 	}

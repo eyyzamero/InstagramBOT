@@ -1,9 +1,32 @@
 .dashboard-wrapper {
 	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	app-user-information {
+		display: block;
+		width: 100%;
+	}
+
+	.dashboard-login-btn {
+		display: block;
+		width: 90%;
+		margin: 20px auto;
+		background-color: #0D5F84;
+		color: #FFFFFF;
+		border: 0;
+		height: 40px;
+		font-weight: bold;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
 
 	app-tasks {
+		display: block;
+		width: 50%;
+	}
+
+	app-tasks-queue> {
 		display: block;
 		width: 50%;
 	}

@@ -7,6 +7,7 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksQueueComponent } from './tasks-queue/tasks-queue.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { TasksQueueComponent } from './tasks-queue/tasks-queue.component';
 	imports: [
 		CommonModule,
 		DashboardRoutingModule,
-		MaterialModule
+		MaterialModule,
+		ReactiveFormsModule
 	]
 })
 

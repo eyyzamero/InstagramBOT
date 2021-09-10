@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TaskType } from './enums';
-import { TaskModel } from './models';
+import { ITaskModel } from './models';
+import { TasksQueueObservableService } from './services/communication/tasks-queue-observable.service';
 import { TasksQueueService } from './services/regular/tasks-queue.service';
 
 @Component({
@@ -9,19 +11,32 @@ import { TasksQueueService } from './services/regular/tasks-queue.service';
 	styleUrls: ['./tasks-queue.component.less']
 })
 
-export class TasksQueueComponent {
+export class TasksQueueComponent implements OnDestroy {
+
+	tasksInQueue: Array<ITaskModel> = new Array<ITaskModel>();
+
+	TaskType = TaskType;
+
+	private _tasksInQueueSubscription!: Subscription;
 
 	constructor(
-		private _tasksQueueService: TasksQueueService
+		private _tasksQueueService: TasksQueueService,
+		private _tasksQueueObservableService: TasksQueueObservableService
 	) {
-		this.executeTasks();
+		this._initObservables();
+	}
+
+	private _initObservables() {
+		this._tasksInQueueSubscription = this._tasksQueueObservableService.observable.subscribe(
+			value => this.tasksInQueue = value.data
+		);
 	}
 
 	executeTasks() {
-		this._tasksQueueService.addToQueue(new TaskModel(TaskType.FOLLOW_FROM_HASHTAG));
-		this._tasksQueueService.addToQueue(new TaskModel(TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND));
-		this._tasksQueueService.addToQueue(new TaskModel(TaskType.FOLLOW_FROM_HASHTAG));
-
 		this._tasksQueueService.executeTasksFromQueue();
+	}
+
+	ngOnDestroy() {
+		this._tasksInQueueSubscription.unsubscribe();
 	}
 }

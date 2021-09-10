@@ -1,1 +1,13 @@
-<p>tasks-queue works!</p>
+<div class="task-queue-wrapper">
+	<span class="task-queue-header">Tasks List</span>
+	<button class="task-queue-execute-tasks" *ngIf="tasksInQueue.length" (click)="executeTasks()">
+		<span>Execute Tasks</span>
+	</button>
+	<div class="task-item" *ngFor="let task of tasksInQueue; let i = index">
+		<span class="task-item-title-wrapper" [ngSwitch]="task.type">
+			<span class="task-item-title-index">{{ i + 1 }})</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG">Follow From Hashtag</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND">Follow Top Accounts From Poland</span>
+		</span>
+	</div>
+</div>

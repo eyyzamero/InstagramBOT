@@ -1,6 +1,8 @@
-export class FollowTopAccountsFromPoland {
+import { IFollowTopAccountsFromPoland } from "../../..";
+
+export class FollowTopAccountsFromPolandReq implements IFollowTopAccountsFromPoland {
 
 	constructor(
-		public numberOfAccountsToObserve: number = 0
+		public numberOfUsersToFollow: number = 0
 	) { }
 }

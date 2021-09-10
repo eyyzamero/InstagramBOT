@@ -3,22 +3,53 @@
 	padding: 20px;
 	box-sizing: border-box;
 	border: 1px solid #0D5F84;
+	min-height: 275px;
 
 	.tasks-window-header {
 		font-weight: bold;
 		font-size: 20px;
 	}
 
-	.tasks-execute-task-button {
-		display: block;
-		width: 100%;
-		margin: 20px auto;
-		background-color: #0D5F84;
-		color: #FFFFFF;
-		border: 0;
-		height: 40px;
-		font-weight: bold;
-		box-sizing: border-box;
-		cursor: pointer;
+	.task-form {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		padding-top: 10px;
+
+		.task-form-type,
+		.task-form-number-of-accounts {
+			display: block;
+			height: 40px;
+			padding: 6px 12px;
+			border: 0;
+			border-bottom: 1px solid #0D5F84;
+			font-weight: bold;
+			outline: 0;
+			box-sizing: border-box;
+			color: #0D5F84;
+		}
+
+		.task-form-number-of-accounts {
+			-moz-appearance: textfield;
+
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+		}
+
+		.task-form-submit {
+			display: block;
+			width: 100%;
+			margin: 20px auto;
+			background-color: #0D5F84;
+			color: #FFFFFF;
+			border: 0;
+			height: 40px;
+			font-weight: bold;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
 	}
 }

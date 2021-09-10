@@ -1,0 +1,44 @@
+.task-queue-wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	margin-top: 20px;
+	padding: 20px;
+	box-sizing: border-box;
+	border: 1px solid #0D5F84;
+	min-height: 275px;
+
+	.task-queue-header {
+		font-weight: bold;
+    	font-size: 20px;
+	}
+
+	.task-queue-execute-tasks {
+		display: block;
+		width: 100%;
+		margin: 20px auto;
+		background-color: #0D5F84;
+		color: #FFFFFF;
+		border: 0;
+		height: 40px;
+		font-weight: bold;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+
+	.task-item {
+		display: block;
+		padding: 6px 12px;
+		font-size: 16px;
+
+		.task-item-title-wrapper {
+			font-size: 18px;
+			font-weight: bold;
+			color: #0D5F84;
+
+			.task-item-title-index {
+				margin-right: 10px;
+			}
+		}
+	}
+}

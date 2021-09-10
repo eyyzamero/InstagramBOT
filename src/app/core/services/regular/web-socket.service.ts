@@ -17,11 +17,7 @@ export class WebSocketService {
 			this.webSocket$ = this._getNewWebSocketInstance();
 
 		 this.webSocket$.subscribe(
-			 (msg) => {
-				console.log(msg);
-				let message = JSON.parse(msg.data);
-				console.log(message);
-			 },
+			 (msg) => console.log(msg),
 			 err => console.log(err),
 			 () => console.log("closed")
 		);

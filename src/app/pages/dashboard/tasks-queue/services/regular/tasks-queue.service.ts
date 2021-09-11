@@ -47,7 +47,7 @@ export class TasksQueueService implements OnDestroy {
 	}
 
 	executeTasksFromQueue() {
-		this._runningTaskInterval = timer(0, environment.maxActions).subscribe(value => {
+		this._runningTaskInterval = timer(0, environment.timeBetweenOperations).subscribe(value => {
 			let task = this._itemsInQueue[value];
 			this._taskCommunicationService.executeTask(task.type, task.req);
 

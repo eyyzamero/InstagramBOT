@@ -8,13 +8,15 @@ import { MaterialModule } from 'src/app/core/material/material.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksQueueComponent } from './tasks-queue/tasks-queue.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventLoggerComponent } from './event-logger/event-logger.component';
 
 @NgModule({
 	declarations: [
 		DashboardComponent,
 		UserInformationComponent,
 		TasksComponent,
-  		TasksQueueComponent
+  		TasksQueueComponent,
+    EventLoggerComponent
 	],
 	imports: [
 		CommonModule,

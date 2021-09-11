@@ -1,0 +1,21 @@
+<div class="event-logger-wrapper">
+	<div class="event-logger-header">
+		<span>Event Logger</span>
+	</div>
+	<div class="event-logger-data-wrapper">
+		<div class="event-logger-item" *ngFor="let log of logs">
+			<span class="event-logger-item-icon" [ngSwitch]="log.type">
+				<mat-icon *ngSwitchCase="LogType.TASK_STARTED">play_arrow</mat-icon>
+				<mat-icon *ngSwitchCase="LogType.TASK_ENDED">done</mat-icon>
+				<mat-icon *ngSwitchCase="LogType.NEW_FOLLOW">person_add_alt</mat-icon>
+				<mat-icon *ngSwitchCase="LogType.NEW_UNFOLLOW">person_remove</mat-icon>
+			</span>
+			<span class="event-logger-item-date">
+				{{ formatDate(log.date) }}
+			</span>
+			<span class="event-logger-item-text">
+				{{ log.text }}
+			</span>
+		</div>
+	</div>
+</div>

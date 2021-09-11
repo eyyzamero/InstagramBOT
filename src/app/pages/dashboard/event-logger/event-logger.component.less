@@ -1,0 +1,53 @@
+.event-logger-wrapper {
+	margin-top: 20px;
+	padding: 20px;
+	box-sizing: border-box;
+	border: 1px solid #0D5F84;
+
+	.event-logger-header {
+		text-align: center;
+		font-weight: bold;
+    	font-size: 20px;
+	}
+
+	.event-logger-data-wrapper {
+		max-height: 350px;
+		overflow: auto;
+
+		.event-logger-item {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			height: 30px;
+			font-size: 17.5px;
+
+			.event-logger-item-icon {
+				max-height: 30px;
+				padding-right: 20px;
+
+				mat-icon {
+					font-size: 30px;
+					height: 30px;
+					line-height: 30px;
+				}
+			}
+
+			.event-logger-item-date {
+				display: block;
+				width: 130px;
+				line-height: 30px;
+				font-size: 14px;
+				opacity: 0.4;
+			}
+
+			.event-logger-item-text {
+				flex: 1;
+				line-height: 30px;
+				max-height: 30px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: normal;
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FollowFromHashtagReq, FollowTopAccountsFromPolandReq } from 'src/app/core/contracts';
+import { FollowFromHashtagReq, FollowNewIncomersThenFollowTopAccountsReq, FollowTopAccountsFromPolandReq } from 'src/app/core/contracts';
 import { environment } from 'src/environments/environment';
 import { TaskType } from '../tasks-queue/enums';
 import { TasksQueueService } from '../tasks-queue/services/regular/tasks-queue.service';
@@ -48,6 +48,9 @@ export class TasksComponent {
 				case TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND:
 					this._addFollowTopAccountsFromPoland();
 					break;
+				case TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND:
+					this._addFollowNewIncomersThenFollowTopAccountsFromPoland();
+					break;
 			}
 		}
 	}
@@ -65,5 +68,12 @@ export class TasksComponent {
 			this.taskFormGroupControls.numberOfAccounts.value
 		);
 		this._tasksQueueService.addToQueue(TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND, request);
+	}
+
+	private _addFollowNewIncomersThenFollowTopAccountsFromPoland() {
+		let request = new FollowNewIncomersThenFollowTopAccountsReq(
+			this.taskFormGroupControls.numberOfAccounts.value
+		);
+		this._tasksQueueService.addToQueue(TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND, request);
 	}
 }

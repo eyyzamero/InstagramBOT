@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserInformationMapperService } from 'src/app/core/services/mapper';
+import { AppLoadingObservableService } from 'src/app/core/services/observable/app-loading-observable.service';
 import { UserInformationObservableService } from 'src/app/core/services/observable/user-information-observable.service';
 import { ILoginReq } from '../../contracts/requests';
 import { ILoginRes } from '../../contracts/responses';
@@ -14,7 +15,8 @@ export class LoginCommunicationService {
 	constructor(
 		private _httpClient: HttpClient,
 		private _userInformationMapperService: UserInformationMapperService,
-		private _userInformationObservableService: UserInformationObservableService
+		private _userInformationObservableService: UserInformationObservableService,
+		private _appLoadingObservableService: AppLoadingObservableService
 	) { }
 
 	async login(req: ILoginReq): Promise<void> {
@@ -22,6 +24,7 @@ export class LoginCommunicationService {
 			data => {
 				var mappedResponse = this._userInformationMapperService.ILoginResToIUserInformationModel(data);
 				this._userInformationObservableService.add(mappedResponse);
+				this._appLoadingObservableService.endLoading();
 			}
 		);
 	}

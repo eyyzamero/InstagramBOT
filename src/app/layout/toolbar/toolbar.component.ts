@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { CommunicationState } from 'src/app/core/enums';
 import { UserInformationModel } from 'src/app/core/models/implementations';
 import { IUserInformationModel } from 'src/app/core/models/interfaces';
+import { AppLoadingObservableService } from 'src/app/core/services/observable/app-loading-observable.service';
 import { UserInformationObservableService } from 'src/app/core/services/observable/user-information-observable.service';
 import { LoginReq } from 'src/app/pages/login/contracts/requests';
 import { LoginCommunicationService } from 'src/app/pages/login/services';
@@ -24,7 +25,8 @@ export class ToolbarComponent implements OnDestroy {
 
 	constructor(
 		private _loginCommunicationService: LoginCommunicationService,
-		private _userInformationObservableService: UserInformationObservableService
+		private _userInformationObservableService: UserInformationObservableService,
+		private _appLoadingObservableService: AppLoadingObservableService
 	) {
 		this._initObservables();
 	}
@@ -42,6 +44,7 @@ export class ToolbarComponent implements OnDestroy {
 		let req = new LoginReq(environment.instagramUsername, environment.instagramPassword);
 
 		this._loginCommunicationService.login(req);
+		this._appLoadingObservableService.beginLoading("Attempting to log into your account...");
 	}
 
 	ngOnDestroy() {

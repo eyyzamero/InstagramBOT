@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './core/material/material.module';
+import { LoadingSpinnerModule } from './layout/common/loading-spinner/loading-spinner.module';
+import { AppOverlayModule } from './layout/common/overlay/overlay.module';
 
 @NgModule({
 	declarations: [
@@ -16,8 +18,9 @@ import { MaterialModule } from './core/material/material.module';
 		BrowserAnimationsModule,
 		MaterialModule,
 		AppRoutingModule,
-		HttpClientModule
-
+		HttpClientModule,
+		AppOverlayModule,
+		LoadingSpinnerModule
 	],
 	bootstrap: [
 		AppComponent

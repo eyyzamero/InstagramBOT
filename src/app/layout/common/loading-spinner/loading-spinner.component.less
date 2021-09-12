@@ -1,0 +1,24 @@
+.loading-spinner-wrapper {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+	.loading-spinner {
+		display: block;
+		margin: auto;
+
+		::ng-deep {
+			circle {
+				stroke: #0D5F84;
+			}
+		}
+	}
+
+	.loading-spinner-text {
+		color: #0D5F84;
+		text-align: center;
+		font-size: 24px;
+		font-weight: bold;
+		margin-top: 24px;
+	}
+}

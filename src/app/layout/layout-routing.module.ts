@@ -11,10 +11,6 @@ const routes: Routes = [
 				path: "",
 				loadChildren: () => import("../pages/dashboard/dashboard.module").then(m => m.DashboardModule),
 				pathMatch: "full"
-			},
-			{
-				path: "login",
-				loadChildren: () => import("../pages/login/login.module").then(m => m.LoginModule)
 			}
 		]
 	}

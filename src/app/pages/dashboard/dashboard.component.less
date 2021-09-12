@@ -21,18 +21,19 @@
 		cursor: pointer;
 	}
 
-	app-event-logger {
-		display: block;
-		width: 100%;
-	}
+	mat-tab-group {
+		width: 95%;
+		margin-left: 2.5%;
 
-	app-tasks {
-		display: block;
-		width: 50%;
-	}
+		::ng-deep {
+			.mat-tab-label-content {
+				color: #0D5F84;
+				font-weight: bold;
+			}
 
-	app-tasks-queue> {
-		display: block;
-		width: 50%;
+			.mat-ink-bar {
+				background-color: #0D5F84;
+			}
+		}
 	}
 }

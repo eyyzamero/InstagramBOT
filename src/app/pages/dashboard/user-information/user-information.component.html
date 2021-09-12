@@ -7,4 +7,4 @@
 		<span>{{ userInformation.fullName}}</span>
 	</div>
 </div>
-<mat-progress-spinner *ngIf="userInformationCommunicationState !== CommunicationState.LOADED" class="user-information-loading" color="primary" mode="indeterminate"></mat-progress-spinner>
+<mat-progress-spinner *ngIf="userInformationCommunicationState === CommunicationState.LOADING" class="user-information-loading" color="primary" mode="indeterminate" [diameter]="30"></mat-progress-spinner>

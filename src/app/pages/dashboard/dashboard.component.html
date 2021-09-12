@@ -1,9 +1,12 @@
 <div class="dashboard-wrapper">
 	<app-user-information></app-user-information>
-	<button type="button" class="dashboard-login-btn" (click)="loginToAccount()">
-		<span>Login</span>
-	</button>
-	<app-event-logger></app-event-logger>
-	<app-tasks></app-tasks>
-	<app-tasks-queue></app-tasks-queue>
+	<mat-tab-group mat-align-tabs="start">
+		<mat-tab label="Tasks">
+			<app-tasks></app-tasks>
+			<app-tasks-queue></app-tasks-queue>
+		</mat-tab>
+		<mat-tab label="Logs">
+			<app-event-logger></app-event-logger>
+		</mat-tab>
+	</mat-tab-group>
 </div>

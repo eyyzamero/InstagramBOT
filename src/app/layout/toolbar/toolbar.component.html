@@ -1,12 +1,17 @@
 <mat-toolbar class="app-toolbar">
 	<mat-toolbar-row>
-		<span class="toolbar-app-logo" (click)="navigateToMainPage()">
+		<span class="toolbar-app-logo">
 			<img src="/assets/instagram.svg" alt="app-logo" loading="lazy">
-			<span>BOT</span>
+			<span class="toolbar-app-name">BOT</span>
 		</span>
 		<span class="toolbar-spacer"></span>
+		<span class="logged-user">{{ userInformation.username }}</span>
 		<span class="toolbar-buttons">
-			<button mat-icon-button class="logout-button">
+			<button *ngIf="!userInformation.username" mat-button class="login-button" (click)="loginToAccount()">
+				<mat-icon>login</mat-icon>
+				<span>Login</span>
+			</button>
+			<button *ngIf="userInformation.username" mat-button class="logout-button">
 				<mat-icon>logout</mat-icon>
 			</button>
 		</span>

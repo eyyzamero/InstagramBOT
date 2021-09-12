@@ -31,13 +31,27 @@
 		padding: 6px 12px;
 		font-size: 16px;
 
+		&.executed {
+			display: none;
+		}
+
 		.task-item-title-wrapper {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
 			font-size: 18px;
 			font-weight: bold;
 			color: #0D5F84;
+			line-height: 32px;
+			width: 100%;
 
 			.task-item-title-index {
+				font-size: 24px;
 				margin-right: 10px;
+			}
+
+			.task-item-title {
+				height: 32px;
 			}
 		}
 	}

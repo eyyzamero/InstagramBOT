@@ -3,12 +3,14 @@
 	<button class="task-queue-execute-tasks" *ngIf="tasksInQueue.length" (click)="executeTasks()">
 		<span>Execute Tasks</span>
 	</button>
-	<div class="task-item" *ngFor="let task of tasksInQueue; let i = index">
+	<div class="task-item" *ngFor="let task of tasksInQueue; let i = index" [ngClass]="{'executed': task.executed }">
 		<span class="task-item-title-wrapper" [ngSwitch]="task.type">
-			<span class="task-item-title-index">{{ i + 1 }})</span>
-			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG">Follow From Hashtag</span>
-			<span *ngSwitchCase="TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND">Follow Top Accounts From Poland</span>
-			<span *ngSwitchCase="TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND">Follow New Incomers then Follow Top Accounts From Poland</span>
+			<span class="task-item-title-index">
+				<mat-icon>task</mat-icon>
+			</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG" class="task-item-title">Follow From Hashtag</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow Top Accounts From Poland</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow New Incomers then Follow Top Accounts From Poland</span>
 		</span>
 	</div>
 </div>

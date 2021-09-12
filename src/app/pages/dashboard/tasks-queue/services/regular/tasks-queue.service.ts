@@ -47,16 +47,23 @@ export class TasksQueueService implements OnDestroy {
 	}
 
 	executeTasksFromQueue() {
-		this._runningTaskInterval = timer(0, environment.timeBetweenOperations).subscribe(value => {
-			let task = this._itemsInQueue[value];
+		let xd = this.randomInteger(75, 90) * 60 * 1000;
+		this._runningTaskInterval = timer(0, 5 * 1000).subscribe(value => {
+			let task = this.items[value];
 			this._taskCommunicationService.executeTask(task.type, task.req);
 
-			this._itemsInQueue[value].executed = true;
+			this.items[value].executed = true;
 			console.log(`${value + 1} Task ${task.type} executed`);
 
-			if (!this.items.filter(x => !x.executed).length)
+			if (!this.items.filter(x => !x.executed).length) {
 				this.stopExecutingTasks();
+				this._tasksQueueObservableService.clear();
+			}
 		});
+	}
+
+	randomInteger(min: number, max: number) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
 	stopExecutingTasks() {

@@ -8,6 +8,7 @@
 			<span class="task-item-title-index">
 				<mat-icon>task</mat-icon>
 			</span>
+			<span *ngSwitchCase="TaskType.NONE" class="task-item-title">Scheduler</span>
 			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG" class="task-item-title">Follow From Hashtag</span>
 			<span *ngSwitchCase="TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow Top Accounts From Poland</span>
 			<span *ngSwitchCase="TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow New Incomers then Follow Top Accounts From Poland</span>

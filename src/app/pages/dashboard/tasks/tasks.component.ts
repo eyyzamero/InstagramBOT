@@ -51,6 +51,9 @@ export class TasksComponent {
 				case TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND:
 					this._addFollowNewIncomersThenFollowTopAccountsFromPoland();
 					break;
+				default:
+					this._addSchedulerTask();
+					break;
 			}
 		}
 	}
@@ -75,5 +78,9 @@ export class TasksComponent {
 			this.taskFormGroupControls.numberOfAccounts.value
 		);
 		this._tasksQueueService.addToQueue(TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND, request);
+	}
+
+	private _addSchedulerTask() {
+		this._tasksQueueService.addToQueue(TaskType.NONE, null);
 	}
 }

@@ -2,6 +2,6 @@ import { TaskType } from "../../enums";
 
 export interface ITaskModel {
 	type: TaskType;
-	req: object | null;
+	req: any | null;
 	executed: boolean;
 }

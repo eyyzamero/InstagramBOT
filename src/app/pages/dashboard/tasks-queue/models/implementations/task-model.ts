@@ -5,7 +5,7 @@ export class TaskModel implements ITaskModel {
 
 	constructor(
 		public type: TaskType = TaskType.NONE,
-		public req: object | null,
+		public req: any | null,
 		public executed: boolean = false
 	) { }
 }

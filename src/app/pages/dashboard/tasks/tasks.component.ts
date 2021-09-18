@@ -51,6 +51,9 @@ export class TasksComponent {
 				case TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND:
 					this._addFollowNewIncomersThenFollowTopAccountsFromPoland();
 					break;
+				case TaskType.LIKE_POSTS_FROM_HASHTAG_FEED:
+					this._addLikePostsFromHashtagFeed();
+					break;
 				default:
 					this._addSchedulerTask();
 					break;
@@ -58,9 +61,16 @@ export class TasksComponent {
 		}
 	}
 
+	private _getHashtag() {
+		let hashtags = new Array<string>("followforfollowback", "f4f", "follow4followback", "l4l", "like4likes", "likesforlike", "polishgirl");
+		hashtags.sort(() => Math.random() - 0.5);
+
+		return hashtags[0];
+	}
+
 	private _addFollowFromHashtagTask() {
 		let request = new FollowFromHashtagReq(
-			"polishgirl",
+			this._getHashtag(),
 			this.taskFormGroupControls.numberOfAccounts.value
 		);
 		this._tasksQueueService.addToQueue(TaskType.FOLLOW_FROM_HASHTAG, request);
@@ -78,6 +88,14 @@ export class TasksComponent {
 			this.taskFormGroupControls.numberOfAccounts.value
 		);
 		this._tasksQueueService.addToQueue(TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND, request);
+	}
+
+	private _addLikePostsFromHashtagFeed() {
+		let request = {
+			numberOfPostsToFollow: this.taskFormGroupControls.numberOfAccounts.value,
+			hashtag: this._getHashtag()
+		};
+		this._tasksQueueService.addToQueue(TaskType.LIKE_POSTS_FROM_HASHTAG_FEED, request);
 	}
 
 	private _addSchedulerTask() {

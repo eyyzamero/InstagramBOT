@@ -1,7 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { TaskCommunicationService } from 'src/app/core/services/communication';
-import { environment } from 'src/environments/environment';
 import { TaskType } from '../../enums';
 import { ITaskModel, TaskModel } from '../../models';
 import { TasksQueueObservableService } from '../communication/tasks-queue-observable.service';
@@ -14,6 +13,8 @@ export class TasksQueueService implements OnDestroy {
 
 	private _itemsInQueue: Array<ITaskModel> = new Array<ITaskModel>();
 	private _runningTaskInterval!: Subscription;
+
+	private readonly TIME_BETWEEN_TASKS = 120 * 60 * 1000;
 
 	get items() {
 		return this._itemsInQueue;
@@ -30,7 +31,7 @@ export class TasksQueueService implements OnDestroy {
 		this._tasksQueueObservableService.observable.subscribe(
 			value => {
 				if (!value.data)
-					this.stopExecutingTasks();
+					this._stopExecutingTasks();
 
 				this._itemsInQueue = value.data;
 			}
@@ -46,30 +47,32 @@ export class TasksQueueService implements OnDestroy {
 		this._tasksQueueObservableService.removeTaskFromQueue(item);
 	}
 
-	executeTasksFromQueue() {
-		this._runningTaskInterval = timer(0, this.randomInteger(75, 90) * 60 * 1000).subscribe(value => {
-			let task = this.items[value];
-			this._taskCommunicationService.executeTask(task.type, task.req);
-
-			this.items[value].executed = true;
-			console.log(`${value + 1} Task ${task.type} executed`);
-
-			if (!this.items.filter(x => !x.executed).length) {
-				this.stopExecutingTasks();
-				this._tasksQueueObservableService.clear();
-			}
+	executeTasksFromQueue(loop: boolean) {
+		this._runningTaskInterval = timer(0, this.TIME_BETWEEN_TASKS).subscribe(value => {
+			let task = loop ? this.items[value % this.items.length] : this.items[value];
+			this._executeTask(task, loop);
 		});
 	}
 
-	randomInteger(min: number, max: number) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+	private _executeTask(task: ITaskModel, loop: boolean) {
+		this._taskCommunicationService.executeTask(task.type, task.req);
+
+		if (loop) {
+			task.executed = true;
+
+			if (!this.items.filter(x => !x.executed).length) {
+				this._stopExecutingTasks();
+				this._tasksQueueObservableService.clear();
+			}
+		}
 	}
 
-	stopExecutingTasks() {
+	private _stopExecutingTasks() {
 		this._runningTaskInterval.unsubscribe();
 	}
 
 	ngOnDestroy() {
-		this._runningTaskInterval.unsubscribe();
+		if (this._runningTaskInterval)
+			this._runningTaskInterval.unsubscribe();
 	}
 }

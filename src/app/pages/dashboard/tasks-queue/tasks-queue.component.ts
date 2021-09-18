@@ -14,6 +14,7 @@ import { TasksQueueService } from './services/regular/tasks-queue.service';
 export class TasksQueueComponent implements OnDestroy {
 
 	tasksInQueue: Array<ITaskModel> = new Array<ITaskModel>();
+	executeInLoop: boolean = false;
 
 	TaskType = TaskType;
 
@@ -33,7 +34,7 @@ export class TasksQueueComponent implements OnDestroy {
 	}
 
 	executeTasks() {
-		this._tasksQueueService.executeTasksFromQueue();
+		this._tasksQueueService.executeTasksFromQueue(this.executeInLoop);
 	}
 
 	ngOnDestroy() {

@@ -1,6 +1,7 @@
 <div class="task-queue-wrapper">
 	<span class="task-queue-header">Tasks List</span>
-	<button class="task-queue-execute-tasks" *ngIf="tasksInQueue.length" (click)="executeTasks()">
+	<mat-checkbox *ngIf="tasksInQueue.length" class="task-queue-infinite-task-loop" [(ngModel)]="executeInLoop" color="primary">Execute tasks in loop</mat-checkbox>
+	<button *ngIf="tasksInQueue.length" class="task-queue-execute-tasks" (click)="executeTasks()">
 		<span>Execute Tasks</span>
 	</button>
 	<div class="task-item" *ngFor="let task of tasksInQueue; let i = index" [ngClass]="{'executed': task.executed }">
@@ -9,7 +10,7 @@
 				<mat-icon>task</mat-icon>
 			</span>
 			<span *ngSwitchCase="TaskType.NONE" class="task-item-title">Scheduler</span>
-			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG" class="task-item-title">Follow From Hashtag</span>
+			<span *ngSwitchCase="TaskType.FOLLOW_FROM_HASHTAG" class="task-item-title">Follow From Hashtag <span *ngIf="task.req.hashtag">"{{ task.req.hashtag }}"</span></span>
 			<span *ngSwitchCase="TaskType.FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow Top Accounts From Poland</span>
 			<span *ngSwitchCase="TaskType.FOLLOW_NEW_INCOMERS_THEN_FOLLOW_TOP_ACCOUNTS_FROM_POLAND" class="task-item-title">Follow New Incomers then Follow Top Accounts From Poland</span>
 		</span>

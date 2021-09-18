@@ -7,7 +7,7 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksQueueComponent } from './tasks-queue/tasks-queue.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventLoggerComponent } from './event-logger/event-logger.component';
 
 @NgModule({
@@ -16,13 +16,14 @@ import { EventLoggerComponent } from './event-logger/event-logger.component';
 		UserInformationComponent,
 		TasksComponent,
   		TasksQueueComponent,
-    EventLoggerComponent
+    	EventLoggerComponent
 	],
 	imports: [
 		CommonModule,
-		DashboardRoutingModule,
 		MaterialModule,
-		ReactiveFormsModule
+		FormsModule,
+		ReactiveFormsModule,
+		DashboardRoutingModule
 	]
 })
 
